@@ -1,0 +1,22 @@
+name: Build Docker Image
+
+# 1. This tells GitHub WHEN to run the pipeline
+on:
+  push:
+    branches:
+      - main
+
+# 2. This tells GitHub WHAT to do
+jobs:
+  build-and-test:
+    # 3. This tells GitHub WHERE to run it (a temporary Linux server)
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step A: Download your code onto the temporary server
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Step B: Build the Docker image to make sure your code isn't broken
+      - name: Build Docker Image
+        run: docker build -t my-devops-app .
